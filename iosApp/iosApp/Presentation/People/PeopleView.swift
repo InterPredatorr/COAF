@@ -43,9 +43,9 @@ struct PeopleView: View {
                 }
             }
             .foregroundStyle(Color.accentColor)
-            .presentationDetents City([.fraction(0.3)])
+            .presentationDetents([.fraction(0.3)])
             .sheet(isPresented: $showFilter) {
-                // filter people send Messi lava is called multi message send message lava is called multi message
+                
             } content: {
                 VStack {
                     

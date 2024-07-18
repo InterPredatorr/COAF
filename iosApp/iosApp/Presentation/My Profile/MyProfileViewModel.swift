@@ -77,6 +77,34 @@ struct Certificate {
                             name: "School Completion")
 }
 
+struct CoafPassportProgram {
+    var name: String
+    var issueDate: String
+    
+    static let empty = Self(name: "Mentorship",
+                            issueDate: Date.now.toString)
+}
+
+enum CoafClubPosition: String, CaseIterable {
+    case attentdee
+    case organizer
+    
+    var value: String {
+        self.rawValue.capitalized
+    }
+}
+
+struct CoafClub: Identifiable {
+    var id = UUID()
+    var name: String
+    var position: CoafClubPosition
+    
+    static func empty() -> Self {
+        Self(name: "\(["English", "Debate"].randomElement()!) Club", position: CoafClubPosition.allCases.randomElement()!)
+    }
+}
+
+
 class User {
     var imageUrl: String
     var name: String
@@ -95,12 +123,32 @@ class User {
     var activities: [Activity]
     var certificates: [Certificate]
     var skills: [String]
+    var programs: [CoafPassportProgram]
+    var clubs: [CoafClub]
     
     var fullname: String {
         return [name, surname].joined(separator: " ")
     }
     
-    init(imageUrl: String, name: String, surname: String, fatherName: String, birthday: String, gender: Gender, email: String, mobilePhone: String, placeOfBirth: Address, currentResidence: Address, about: String, isSmartCitizen: Bool, universities: [University], workExperiences: [Experience], activities: [Activity], certificates: [Certificate], skills: [String]) {
+    init(imageUrl: String,
+         name: String,
+         surname: String,
+         fatherName: String,
+         birthday: String,
+         gender: Gender,
+         email: String,
+         mobilePhone: String,
+         placeOfBirth: Address,
+         currentResidence: Address,
+         about: String,
+         isSmartCitizen: Bool,
+         universities: [University],
+         workExperiences: [Experience],
+         activities: [Activity],
+         certificates: [Certificate],
+         skills: [String],
+         programs: [CoafPassportProgram],
+         clubs: [CoafClub]) {
             self.imageUrl = imageUrl
             self.name = name
             self.surname = surname
@@ -118,6 +166,8 @@ class User {
             self.activities = activities
             self.certificates = certificates
             self.skills = skills
+            self.programs = programs
+            self.clubs = clubs
         }
     
     private static let url = "https://scontent.fevn6-5.fna.fbcdn.net/v/t39.30808-1/421993184_3616149601969247_4268671215732508320_n.jpg?stp=dst-jpg_p480x480&_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sa2bBGAjf0wQ7kNvgHMOnvt&_nc_ht=scontent.fevn6-5.fna&oh=00_AYBJsRfV9p_GWlEgmS3MiLjlDQKs_nn1Tu5VWFxLQtDMJQ&oe=664ED8E9"
@@ -140,15 +190,17 @@ class User {
         activities = [.empty]
         certificates = [.empty]
         skills = []
+        programs = [.empty, .empty]
+        clubs = [.empty(), .empty()]
     }
     
     static let users: [User] = [
-        User(imageUrl: User.url, name: "Aram", surname: "Hakobyan", fatherName: "Hovhannes", birthday: "20-07-1995", gender: .male, email: "aram.hakobyan@example.com", mobilePhone: "+37491234567", placeOfBirth: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Passionate software developer with a knack for creating innovative solutions.", isSmartCitizen: true, universities: [University(name: "Armenian State University of Economics", faculty: "Business", department: "Finance", startDate: "01-09-2013", endDate: "30-06-2017")], workExperiences: [Experience(employee: "Tumo Center", position: "Developer", startDate: "01-07-2018", endDate: "01-08-2022")], activities: [Activity(name: "Coding Club", startYear: 2013, endYear: 2017)], certificates: [Certificate(providerName: "Coursera", yearOfProvision: 2019, name: "Machine Learning")], skills: ["Swift", "Python", "SQL"]),
-        User(imageUrl: User.url, name: "Lilit", surname: "Sargsyan", fatherName: "Armen", birthday: "15-05-1993", gender: .female, email: "lilit.sargsyan@example.com", mobilePhone: "+37493345678", placeOfBirth: Address(country: "Armenia", region: "Shirak", city: "Gyumri"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Experienced data analyst with a strong background in statistics and programming.", isSmartCitizen: true, universities: [University(name: "American University of Armenia", faculty: "Computer Science", department: "Data Science", startDate: "01-09-2011", endDate: "30-06-2015")], workExperiences: [Experience(employee: "Synopsys", position: "Data Analyst", startDate: "01-10-2016", endDate: "present")], activities: [Activity(name: "Data Science Society", startYear: 2011, endYear: 2015)], certificates: [Certificate(providerName: "Udacity", yearOfProvision: 2020, name: "Data Scientist Nanodegree")], skills: ["R", "Python", "Tableau"]),
-        User(imageUrl: User.url, name: "Karen", surname: "Vardanyan", fatherName: "Artur", birthday: "10-12-1989", gender: .male, email: "karen.vardanyan@example.com", mobilePhone: "+37494456789", placeOfBirth: Address(country: "Armenia", region: "Lori", city: "Vanadzor"), currentResidence: Address(country: "Armenia", region: "Lori", city: "Vanadzor"), about: "Project manager with over 10 years of experience in the tech industry.", isSmartCitizen: true, universities: [University(name: "Vanadzor State University", faculty: "Engineering", department: "Electrical Engineering", startDate: "01-09-2007", endDate: "30-06-2011")], workExperiences: [Experience(employee: "Ucom", position: "Project Manager", startDate: "01-09-2012", endDate: "present")], activities: [Activity(name: "IEEE Student Branch", startYear: 2007, endYear: 2011)], certificates: [Certificate(providerName: "Project Management Institute", yearOfProvision: 2018, name: "PMP")], skills: ["Project Management", "Agile", "Scrum"]),
-        User(imageUrl: User.url, name: "Mariam", surname: "Petrosyan", fatherName: "Gevorg", birthday: "03-03-2000", gender: .female, email: "mariam.petrosyan@example.com", mobilePhone: "+37494567890", placeOfBirth: Address(country: "Armenia", region: "Gegharkunik", city: "Gavar"), currentResidence: Address(country: "Armenia", region: "Kotayk", city: "Hrazdan"), about: "Recent graduate with a degree in graphic design, eager to start a career in the creative industry.", isSmartCitizen: false, universities: [University(name: "National University of Architecture and Construction of Armenia", faculty: "Design", department: "Graphic Design", startDate: "01-09-2017", endDate: "30-06-2021")], workExperiences: [Experience(employee: "Freelance", position: "Graphic Designer", startDate: "01-07-2021", endDate: "present")], activities: [Activity(name: "Art Club", startYear: 2017, endYear: 2021)], certificates: [Certificate(providerName: "Adobe", yearOfProvision: 2021, name: "Adobe Certified Associate")], skills: ["Adobe Photoshop", "Illustrator", "InDesign"]),
-        User(imageUrl: User.url, name: "Davit", surname: "Arakelyan", fatherName: "Levon", birthday: "25-11-1992", gender: .male, email: "davit.arakelyan@example.com", mobilePhone: "+37494321098", placeOfBirth: Address(country: "Armenia", region: "Syunik", city: "Kapan"), currentResidence: Address(country: "Armenia", region: "Syunik", city: "Kapan"), about: "Mechanical engineer with a passion for robotics and automation.", isSmartCitizen: true, universities: [University(name: "National Polytechnic University of Armenia", faculty: "Engineering", department: "Mechanical Engineering", startDate: "01-09-2010", endDate: "30-06-2014")], workExperiences: [Experience(employee: "Armenian NPP", position: "Mechanical Engineer", startDate: "01-10-2015", endDate: "present")], activities: [Activity(name: "Robotics Club", startYear: 2010, endYear: 2014)], certificates: [Certificate(providerName: "Siemens", yearOfProvision: 2017, name: "Automation Engineer")], skills: ["CAD", "MATLAB", "Robotics"]),
-        User(imageUrl: User.url, name: "Narek", surname: "Babayan", fatherName: "Tigran", birthday: "14-02-1997", gender: .male, email: "narek.babayan@example.com", mobilePhone: "+37493210987", placeOfBirth: Address(country: "Armenia", region: "Tavush", city: "Dilijan"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Software developer specializing in mobile app development for iOS and Android platforms.", isSmartCitizen: true, universities: [University(name: "Yerevan State University", faculty: "Informatics and Applied Mathematics", department: "Software Engineering", startDate: "01-09-2015", endDate: "30-06-2019")], workExperiences: [Experience(employee: "PicsArt", position: "Mobile Developer", startDate: "01-11-2019", endDate: "present")], activities: [Activity(name: "Hackathon Participant", startYear: 2015, endYear: 2019)], certificates: [Certificate(providerName: "Apple", yearOfProvision: 2020, name: "iOS Development")], skills: ["Swift", "Kotlin", "React Native"]),
+        User(imageUrl: User.url, name: "Aram", surname: "Hakobyan", fatherName: "Hovhannes", birthday: "20-07-1995", gender: .male, email: "aram.hakobyan@example.com", mobilePhone: "+37491234567", placeOfBirth: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Passionate software developer with a knack for creating innovative solutions.", isSmartCitizen: true, universities: [University(name: "Armenian State University of Economics", faculty: "Business", department: "Finance", startDate: "01-09-2013", endDate: "30-06-2017")], workExperiences: [Experience(employee: "Tumo Center", position: "Developer", startDate: "01-07-2018", endDate: "01-08-2022")], activities: [Activity(name: "Coding Club", startYear: 2013, endYear: 2017)], certificates: [Certificate(providerName: "Coursera", yearOfProvision: 2019, name: "Machine Learning")], skills: ["Swift", "Python", "SQL"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
+        User(imageUrl: User.url, name: "Lilit", surname: "Sargsyan", fatherName: "Armen", birthday: "15-05-1993", gender: .female, email: "lilit.sargsyan@example.com", mobilePhone: "+37493345678", placeOfBirth: Address(country: "Armenia", region: "Shirak", city: "Gyumri"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Experienced data analyst with a strong background in statistics and programming.", isSmartCitizen: true, universities: [University(name: "American University of Armenia", faculty: "Computer Science", department: "Data Science", startDate: "01-09-2011", endDate: "30-06-2015")], workExperiences: [Experience(employee: "Synopsys", position: "Data Analyst", startDate: "01-10-2016", endDate: "present")], activities: [Activity(name: "Data Science Society", startYear: 2011, endYear: 2015)], certificates: [Certificate(providerName: "Udacity", yearOfProvision: 2020, name: "Data Scientist Nanodegree")], skills: ["R", "Python", "Tableau"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
+        User(imageUrl: User.url, name: "Karen", surname: "Vardanyan", fatherName: "Artur", birthday: "10-12-1989", gender: .male, email: "karen.vardanyan@example.com", mobilePhone: "+37494456789", placeOfBirth: Address(country: "Armenia", region: "Lori", city: "Vanadzor"), currentResidence: Address(country: "Armenia", region: "Lori", city: "Vanadzor"), about: "Project manager with over 10 years of experience in the tech industry.", isSmartCitizen: true, universities: [University(name: "Vanadzor State University", faculty: "Engineering", department: "Electrical Engineering", startDate: "01-09-2007", endDate: "30-06-2011")], workExperiences: [Experience(employee: "Ucom", position: "Project Manager", startDate: "01-09-2012", endDate: "present")], activities: [Activity(name: "IEEE Student Branch", startYear: 2007, endYear: 2011)], certificates: [Certificate(providerName: "Project Management Institute", yearOfProvision: 2018, name: "PMP")], skills: ["Project Management", "Agile", "Scrum"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
+        User(imageUrl: User.url, name: "Mariam", surname: "Petrosyan", fatherName: "Gevorg", birthday: "03-03-2000", gender: .female, email: "mariam.petrosyan@example.com", mobilePhone: "+37494567890", placeOfBirth: Address(country: "Armenia", region: "Gegharkunik", city: "Gavar"), currentResidence: Address(country: "Armenia", region: "Kotayk", city: "Hrazdan"), about: "Recent graduate with a degree in graphic design, eager to start a career in the creative industry.", isSmartCitizen: false, universities: [University(name: "National University of Architecture and Construction of Armenia", faculty: "Design", department: "Graphic Design", startDate: "01-09-2017", endDate: "30-06-2021")], workExperiences: [Experience(employee: "Freelance", position: "Graphic Designer", startDate: "01-07-2021", endDate: "present")], activities: [Activity(name: "Art Club", startYear: 2017, endYear: 2021)], certificates: [Certificate(providerName: "Adobe", yearOfProvision: 2021, name: "Adobe Certified Associate")], skills: ["Adobe Photoshop", "Illustrator", "InDesign"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
+        User(imageUrl: User.url, name: "Davit", surname: "Arakelyan", fatherName: "Levon", birthday: "25-11-1992", gender: .male, email: "davit.arakelyan@example.com", mobilePhone: "+37494321098", placeOfBirth: Address(country: "Armenia", region: "Syunik", city: "Kapan"), currentResidence: Address(country: "Armenia", region: "Syunik", city: "Kapan"), about: "Mechanical engineer with a passion for robotics and automation.", isSmartCitizen: true, universities: [University(name: "National Polytechnic University of Armenia", faculty: "Engineering", department: "Mechanical Engineering", startDate: "01-09-2010", endDate: "30-06-2014")], workExperiences: [Experience(employee: "Armenian NPP", position: "Mechanical Engineer", startDate: "01-10-2015", endDate: "present")], activities: [Activity(name: "Robotics Club", startYear: 2010, endYear: 2014)], certificates: [Certificate(providerName: "Siemens", yearOfProvision: 2017, name: "Automation Engineer")], skills: ["CAD", "MATLAB", "Robotics"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
+        User(imageUrl: User.url, name: "Narek", surname: "Babayan", fatherName: "Tigran", birthday: "14-02-1997", gender: .male, email: "narek.babayan@example.com", mobilePhone: "+37493210987", placeOfBirth: Address(country: "Armenia", region: "Tavush", city: "Dilijan"), currentResidence: Address(country: "Armenia", region: "Yerevan", city: "Yerevan"), about: "Software developer specializing in mobile app development for iOS and Android platforms.", isSmartCitizen: true, universities: [University(name: "Yerevan State University", faculty: "Informatics and Applied Mathematics", department: "Software Engineering", startDate: "01-09-2015", endDate: "30-06-2019")], workExperiences: [Experience(employee: "PicsArt", position: "Mobile Developer", startDate: "01-11-2019", endDate: "present")], activities: [Activity(name: "Hackathon Participant", startYear: 2015, endYear: 2019)], certificates: [Certificate(providerName: "Apple", yearOfProvision: 2020, name: "iOS Development")], skills: ["Swift", "Kotlin", "React Native"], programs: [.empty, .empty], clubs: [.empty(), .empty()]),
         
     ]
 }

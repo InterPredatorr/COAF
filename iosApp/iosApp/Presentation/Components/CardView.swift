@@ -22,11 +22,11 @@ struct CardView<Content: View>: View {
     
     var body: some View {
         contentView
-        .padding()
-        .background(color)
-        .cornerRadius(cornerRadius)
-        .overlay(RoundedRectangle(cornerRadius: cornerRadius)
-        .stroke(Color.backgroundPrimary, lineWidth: 0.5))
+            .padding(.vertical)
+            .background(color)
+            .cornerRadius(cornerRadius)
+            .overlay(RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(Color.backgroundPrimary, lineWidth: 0.5))
     }
 }
 

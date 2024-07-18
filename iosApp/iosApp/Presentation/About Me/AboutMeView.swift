@@ -145,15 +145,17 @@ extension AboutMeView {
         }
     }
     
-    @ViewBuilder
-    func sectionHeaderText(_ title: String, font: Font = .title2) -> some View {
-        Text(title)
-            .font(font)
-            .fontWeight(.bold)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundStyle(Color.accentColor)
-            .lineLimit(1)
-    }
+    
+}
+
+@ViewBuilder
+func sectionHeaderText(_ title: String, font: Font = .title2) -> some View {
+    Text(title)
+        .font(font)
+        .fontWeight(.bold)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .foregroundStyle(Color.accentColor)
+        .lineLimit(1)
 }
 
 #Preview {

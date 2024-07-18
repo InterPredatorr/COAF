@@ -11,12 +11,6 @@ import UIKit
 
 
 extension Color {
-    static let textPrimary = Color("textPrimary", bundle: .main)
-    static let mainPrimary = Color("mainPrimary", bundle: .main)
-    static let backgroundPrimary = Color("backgroundPrimary", bundle: .main)
-}
-
-extension Color {
     var toUIColor: UIColor {
         UIColor(self)
     }
