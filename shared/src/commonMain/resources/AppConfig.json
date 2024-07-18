@@ -1,0 +1,84 @@
+{
+  "profile": {
+    "groups": {
+      "contactInfo": {
+        "title": "Contact Info",
+        "items": {
+          "name": {
+            "title": "Name",
+            "placeholder": "Enter your name..."
+          },
+          "surname": {
+            "title": "Surame",
+            "placeholder": "Enter your surname..."
+          },
+          "fatherName": {
+            "title": "Father Name",
+            "placeholder": "Enter your father name..."
+          },
+          "birthday": {
+            "title": "Birthday",
+            "placeholder": "Choose your birthday."
+          },
+          "gender": {
+            "title": "Gender",
+            "placeholder": "Choose your gender."
+          },
+          "email": {
+            "title": "Email",
+            "placeholder": "Enter your email address..."
+          },
+          "mobilePhone": {
+            "title": "Mobile Phone",
+            "placeholder": "Enter your phone number..."
+          }
+        }
+      },
+      "placeOfBirth": {
+        "title": "Place of Birth",
+        "items": {
+          "country": {
+            "title": "Country",
+            "placeholder": "Enter your birth country..."
+          },
+          "region": {
+            "title": "Region",
+            "placeholder": "Enter your birth region..."
+          },
+          "city": {
+            "title": "City",
+            "placeholder": "Enter your birth city..."
+          }
+        }
+      },
+      "currentResidence": {
+        "title": "Place of Birth",
+        "items": {
+          "country": {
+            "title": "Country",
+            "placeholder": "Enter your current country..."
+          },
+          "region": {
+            "title": "Region",
+            "placeholder": "Enter your current region..."
+          },
+          "city": {
+            "title": "City",
+            "placeholder": "Enter your current city..."
+          }
+        }
+      },
+      "about": {
+        "title": "About (up to 100 words)",
+        "placeholder": "Write about you, up to 100 words..."
+      },
+      "smartCitizen": {
+        "title": "SMART Citizenship",
+        "options": [
+          "No",
+          "Yes"
+        ]
+      }
+    }
+  }
+}
