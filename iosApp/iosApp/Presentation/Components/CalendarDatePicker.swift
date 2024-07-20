@@ -13,15 +13,14 @@ struct CalendarDatePicker: View {
     @Binding var selectedDate: Date
     
     var body: some View {
-        Image(systemName: "calendar")
-            .font(.title3)
-            .overlay {
-                DatePicker("", selection: $selectedDate, displayedComponents: [.date])
-                    .blendMode(.destinationOver)
-                    .onChange(of: selectedDate) { value in
-                        
-                    }
-            }
+        DatePicker(selectedDate.toString.isEmpty ? "Choose Date" : selectedDate.toString,
+                   selection: $selectedDate,
+                   displayedComponents: [.date])
+        .blendMode(.destinationOver)
+        .foregroundStyle(Color.accentColor)
+        .tint(.accentColor)
+        .frame(height: 20)
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 
@@ -29,4 +28,8 @@ struct CalendarDatePicker: View {
     VStack {
         CalendarDatePicker(selectedDate: .constant(.now))
     }
+}
+
+#Preview {
+    ContainerView()
 }

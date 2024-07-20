@@ -37,3 +37,7 @@ struct AsyncImageView: View {
 #Preview {
     AsyncImageView(url: "", size: 120)
 }
+
+#Preview {
+    ContainerView()
+}

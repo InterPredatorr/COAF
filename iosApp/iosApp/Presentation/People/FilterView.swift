@@ -39,3 +39,7 @@ struct FilterView: View {
     FilterView()
         .environmentObject(PeopleViewModel())
 }
+
+#Preview {
+    ContainerView()
+}

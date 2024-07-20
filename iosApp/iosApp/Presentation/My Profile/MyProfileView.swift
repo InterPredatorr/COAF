@@ -22,6 +22,8 @@ struct MyProfileView: View {
                     ResourcesView().tag(MyProfileTab.resources)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
+                .animation(.easeInOut, value: viewModel.selectedTab)
+                .transition(.slide)
             }
             .toolbar {
                 DS.headerImage
@@ -40,7 +42,7 @@ struct MyProfileView: View {
                     }
                 }
             }
-            .foregroundStyle(Color.accentColor)
+            .foregroundStyle(.gray)
         }
     }
 }
@@ -99,4 +101,8 @@ extension MyProfileView {
 
 #Preview {
     MyProfileView()
+}
+
+#Preview {
+    ContainerView()
 }

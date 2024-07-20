@@ -10,7 +10,7 @@ import Foundation
 
 
 extension Date {
-    var toString: String {
+    var stringValue: String {
         return DateFormatter.main.string(from: self)
     }
 }

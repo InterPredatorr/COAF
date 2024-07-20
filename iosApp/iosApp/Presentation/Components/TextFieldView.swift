@@ -13,8 +13,9 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
     enum Field: Hashable {
         case about
     }
-    
+    private let isBindable: Bool
     @Binding var text: String
+    var value: String
     var title: String
     var placeholder: String?
     var lineLimit: Int
@@ -28,14 +29,22 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
         }
     }
     
-    init(text: Binding<String>,
+    init(text: Binding<String>? = nil,
+         value: String = "",
          title: String = "",
          placeholder: String? = nil,
          lineLimit: Int? = nil,
          locked: Bool = false,
          leftButton: @escaping () -> LeftButton = { EmptyView() },
          rightButton: @escaping () -> RightButton = { EmptyView() }) {
-        self._text = text
+        if let text {
+            self._text = text
+            self.isBindable = true
+        } else {
+            self._text = Binding(get: { "" }, set: { _ in })
+            self.isBindable = false
+        }
+        self.value = value
         self.title = title
         self.placeholder = placeholder
         self.lineLimit = lineLimit ?? 1
@@ -50,35 +59,49 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
                 Text(title)
                     .foregroundStyle(Color.textPrimary)
             }
+            content
+            .disabled(locked)
+            .textSelection(.enabled)
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .lineLimit(lineLimit, reservesSpace: true)
+            .padding(.vertical)
+            .padding(.leading, 5)
+            .background(Color.backgroundPrimary)
+            .clipShape(.rect(cornerRadius: 12))
+            .overlay {
+                HStack {
+                    leftButton()
+                    Spacer()
+                    rightButton()
+                }
+                .padding(.horizontal)
+            }
+        }
+        .foregroundStyle(Color.textPrimary)
+    }
+    
+    @ViewBuilder
+    var content: some View {
+        if isBindable {
             TextField(placeholder ?? "",
                       text: $text,
                       axis: isMultiline ? .vertical : .horizontal)
-                .disabled(locked)
+        } else {
+            Text(value)
                 .textSelection(.enabled)
-                .multilineTextAlignment(.leading)
-                .lineLimit(lineLimit, reservesSpace: true)
-                .padding(.vertical)
-                .padding(.leading, 5)
-                .frame(maxWidth: .infinity)
-                .background(Color.backgroundPrimary)
-                .clipShape(.rect(cornerRadius: 12))
-                .overlay {
-                    HStack {
-                        leftButton()
-                        Spacer()
-                        rightButton()
-                    }
-                    .padding(.horizontal)
-                    
-                }
-                
-                
         }
-        .foregroundStyle(Color.textPrimary)
     }
 }
 
 #Preview {
-    TextFieldView(text: .constant("hello"), title: "gegfe", placeholder: "gege")
+    struct S: Stringable {
+        var toString: String = "hello"
+    }
+    return TextFieldView(text: .constant(""), title: "gegfe", placeholder: "gege")
 }
 
+
+#Preview {
+    ContainerView()
+}

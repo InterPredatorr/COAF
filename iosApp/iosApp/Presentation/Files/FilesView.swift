@@ -40,3 +40,7 @@ struct FilesView: View {
 #Preview {
     FilesView()
 }
+
+#Preview {
+    ContainerView()
+}

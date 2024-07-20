@@ -10,23 +10,20 @@ import SwiftUI
 
 struct CardView<Content: View>: View {
     
-    let color: Color
-    let cornerRadius: CGFloat
-    let contentView: Content
-    
-    init(color: Color = .backgroundPrimary, cornerRadius: CGFloat = 16, content: () -> Content) {
-        self.color = color
-        self.cornerRadius = cornerRadius
-        self.contentView = content()
-    }
+    var color: Color = .backgroundPrimary
+    var cornerRadius: CGFloat = 16
+    var leading: CGFloat = 5
+    @ViewBuilder var contentView: () -> Content
     
     var body: some View {
-        contentView
-            .padding(.vertical)
+        contentView()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
             .background(color)
             .cornerRadius(cornerRadius)
             .overlay(RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(Color.backgroundPrimary, lineWidth: 0.5))
+            
     }
 }
 
@@ -34,4 +31,8 @@ struct CardView<Content: View>: View {
     CardView {
         Text("aaa")
     }
+}
+
+#Preview {
+    ContainerView()
 }

@@ -36,9 +36,6 @@ struct AboutMeView: View {
             }
             .padding(.horizontal)
             .scrollIndicators(.hidden)
-            .onAppear {
-//                reader.scrollTo("bottom")
-            }
         }
     }
 }
@@ -51,39 +48,39 @@ extension AboutMeView {
     var contactInfo: some View {
         VStack {
             sectionHeaderText("Contact Info")
-            TextFieldView(text: $viewModel.user.name,
-                          title: "Name",
-                          placeholder: "Enter your name")
-            TextFieldView(text: $viewModel.user.surname,
-                          title: "Surname",
-                          placeholder: "Enter your surname")
-            TextFieldView(text: $viewModel.user.fatherName,
-                          title: "Father Name",
-                          placeholder: "Enter your father name")
+            TextView(text: $viewModel.user.name,
+                     title: "Name",
+                     placeholder: "Enter your name")
+            TextView(text: $viewModel.user.surname,
+                     title: "Surname",
+                     placeholder: "Enter your surname")
+            TextView(text: $viewModel.user.fatherName,
+                     title: "Father Name",
+                     placeholder: "Enter your father name")
             HStack {
-                TextFieldView(text: $viewModel.user.birthday,
-                              title: "Birthday",
-                              placeholder: "Choose...",
-                              locked: true,
-                              rightButton:  {
-                    CalendarDatePicker(selectedDate: $viewModel.selectedBirthday)
-                })
-                TextFieldView(text: $viewModel.selectedGender,
-                              title: "Gender",
-                              placeholder: "",
-                              locked: true,
-                              rightButton:  {
-                    MenuView(options: ["Male", "Female", "Other"]) { option in
-                        viewModel.selectedGender = option
+                VStack(alignment: .leading) {
+                    Text("Birthday")
+                    CardView {
+                        CalendarDatePicker(selectedDate: $viewModel.user.birthday)
+                            
                     }
-                })
+                }
+                VStack(alignment: .leading) {
+                    Text("Gender")
+                    CardView {
+                        MenuView(title: viewModel.user.gender.toString,
+                                 current: $viewModel.user.gender,
+                                 options: Gender.allCases)
+                    }
+                }
+                
             }
-            TextFieldView(text: $viewModel.user.email,
-                          title: "Email",
-                          placeholder: "Enter your email address...")
-            TextFieldView(text: $viewModel.user.mobilePhone,
-                          title: "Mobile Phone",
-                          placeholder: "Enter your phone number...")
+            TextView(text: $viewModel.user.email,
+                     title: "Email",
+                     placeholder: "Enter your email address...")
+            TextView(text: $viewModel.user.mobilePhone,
+                     title: "Mobile Phone",
+                     placeholder: "Enter your phone number...")
         }
     }
     
@@ -91,12 +88,12 @@ extension AboutMeView {
         VStack {
             sectionHeaderText("Place of Birth")
             HStack {
-                TextFieldView(text: $viewModel.user.placeOfBirth.country,
-                              title: "Country")
-                TextFieldView(text: $viewModel.user.placeOfBirth.region,
-                              title: "Region")
-                TextFieldView(text: $viewModel.user.placeOfBirth.city,
-                              title: "City")
+                TextView(text: $viewModel.user.placeOfBirth.country,
+                         title: "Country")
+                TextView(text: $viewModel.user.placeOfBirth.region,
+                         title: "Region")
+                TextView(text: $viewModel.user.placeOfBirth.city,
+                         title: "City")
             }
         }
     }
@@ -105,12 +102,12 @@ extension AboutMeView {
         VStack {
             sectionHeaderText("Current Residence")
             HStack {
-                TextFieldView(text: $viewModel.user.currentResidence.country,
-                              title: "Country")
-                TextFieldView(text: $viewModel.user.currentResidence.region,
-                              title: "Region")
-                TextFieldView(text: $viewModel.user.currentResidence.city,
-                              title: "City")
+                TextView(text: $viewModel.user.currentResidence.country,
+                         title: "Country")
+                TextView(text: $viewModel.user.currentResidence.region,
+                         title: "Region")
+                TextView(text: $viewModel.user.currentResidence.city,
+                         title: "City")
             }
         }
     }
@@ -118,7 +115,7 @@ extension AboutMeView {
     var about: some View {
         VStack {
             sectionHeaderText("About")
-            TextFieldView(text: $viewModel.user.about, title: "About (up to 100 words)", lineLimit: 10)
+            TextView(text: $viewModel.user.about, title: "About (up to 100 words)", lineLimit: 10)
         }
     }
     
@@ -135,13 +132,13 @@ extension AboutMeView {
     var education: some View {
         VStack {
             sectionHeaderText("Education")
-//            ForEach(viewModel.user.universities) { university in
-//                CardView {
-//                    VStack {
-//
-//                    }
-//                }
-//            }
+            //            ForEach(viewModel.user.universities) { university in
+            //                CardView {
+            //                    VStack {
+            //
+            //                    }
+            //                }
+            //            }
         }
     }
     
@@ -163,5 +160,5 @@ func sectionHeaderText(_ title: String, font: Font = .title2) -> some View {
 }
 
 #Preview {
-    MainView()
+    ContainerView()
 }

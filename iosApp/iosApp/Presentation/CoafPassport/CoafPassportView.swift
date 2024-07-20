@@ -29,14 +29,17 @@ extension CoafPassportView {
     var programs: some View {
         VStack {
             sectionHeaderText("Programs")
-            ForEach($viewModel.user.programs, id: \.issueDate) { program in
+            ForEach($viewModel.user.programs, id: \.id) { program in
                 CardView {
                     VStack(spacing: 5) {
-                        TextFieldView(text: program.name)
-                        TextFieldView(text: program.issueDate)
+                        PairView(title: "Name:") { TextView(text: program.name) }
+                        PairView(title: "Issue Date:") {
+                            CalendarDatePicker(selectedDate: program.issueDate)
+                        }
                     }
-                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity)
                 }
+                
             }
         }
     }
@@ -44,20 +47,19 @@ extension CoafPassportView {
     var clubs: some View {
         VStack {
             sectionHeaderText("COAF Clubs")
-            ForEach($viewModel.user.clubs, id: \.name) { club in
+            ForEach($viewModel.user.clubs, id: \.id) { club in
                 CardView {
-                    VStack(alignment: .leading, spacing: 5) {
-                        TextFieldView(text: club.name)
-                        HStack {
-                            Text(club.position.wrappedValue.value)
-                            MenuView(options: CoafClubPosition.allCases.map { $0.value }) { position in
-                                viewModel.user.clubs.updateItem(\.id, club.id) { c in
-                                    c.position = CoafClubPosition.allCases.first { $0.value == position }!
-                                }
-                            }
+                    VStack(spacing: 10) {
+                        PairView(title: "Name:") { Text(club.name.wrappedValue) }
+                        PairView(title: "Position:") {
+                            MenuView(title: club.position.wrappedValue.toString,
+                                     current: club.position,
+                                     options: CoafClubPosition.allCases)
                         }
+                        
                     }
                     .padding(.horizontal)
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
@@ -66,4 +68,8 @@ extension CoafPassportView {
 
 #Preview {
     CoafPassportView()
+}
+
+#Preview {
+    ContainerView()
 }

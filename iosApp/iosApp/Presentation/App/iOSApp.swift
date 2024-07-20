@@ -13,20 +13,20 @@ struct iOSApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $path) {
-                LoginView {
-                    withAnimation {
-                        isLoggedIn = true
-                    }
-                }
-                .onOpenURL { url in
-                    GIDSignIn.sharedInstance.handle(url)
-                }
-                .onAppear {
-                    GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-                        // Check if `user` exists; otherwise, do something with `error`
-                    }
-                }
-                .navigationDestination(isPresented: $isLoggedIn) {
+//                LoginView {
+//                    withAnimation {
+//                        isLoggedIn = true
+//                    }
+//                }
+//                .onOpenURL { url in
+//                    GIDSignIn.sharedInstance.handle(url)
+//                }
+//                .onAppear {
+//                    GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+//                        // Check if `user` exists; otherwise, do something with `error`
+//                    }
+//                }
+//                .navigationDestination(isPresented: $isLoggedIn) {
                     ZStack {
                         Color.backgroundPrimary.ignoresSafeArea()
                         BottomBarView()
@@ -36,7 +36,7 @@ struct iOSApp: App {
                             }
                     }
                     .navigationBarBackButtonHidden()
-                }
+//                }
             }
         }
         

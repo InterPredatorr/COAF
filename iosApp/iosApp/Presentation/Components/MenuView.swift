@@ -8,24 +8,29 @@
 
 import SwiftUI
 
-struct MenuView: View {
+struct MenuView<S: Stringable & Hashable>: View {
     
     var systemIcon: String = "chevron.down"
-    let options: [String]
-    var onSelect: (String) -> ()
+    var title: String
+    @Binding var current: S
+    let options: [S]
     
     var body: some View {
-        Menu("", systemImage: systemIcon) {
+        Menu(title) {
             ForEach(options, id: \.self) { option in
-                Button(option, action: { onSelect(option) })
+                Button(option.toString.capitalized) {
+                    current = option
+                }
             }
-            .foregroundStyle(Color.accentColor)
         }
+        .foregroundStyle(Color.accentColor)
     }
 }
 
 #Preview {
-    MenuView(options: ["Male", "Female"]) { option in
-        
-    }
+    MenuView(title: "hello", current: .constant("Male"), options: ["Male", "Female"])
+}
+
+#Preview {
+    ContainerView()
 }

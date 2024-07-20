@@ -48,3 +48,7 @@ struct BottomBarView: View {
 #Preview {
     BottomBarView()
 }
+
+#Preview {
+    ContainerView()
+}

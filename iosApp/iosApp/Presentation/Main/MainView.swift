@@ -27,3 +27,7 @@ struct MainView: View {
 #Preview {
     MainView()
 }
+
+#Preview {
+    ContainerView()
+}

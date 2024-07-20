@@ -21,6 +21,7 @@ struct HomeView: View {
                         
                     } label: {
                         Image(systemName: "bell.fill")
+                            
                     }
                 }
                 ToolbarItem {
@@ -28,10 +29,11 @@ struct HomeView: View {
                         
                     } label: {
                         Image(systemName: "gearshape.fill")
+                            
                     }
                 }
             }
-            .foregroundStyle(Color.accentColor)
+            .foregroundStyle(.gray)
         }
         
     }
@@ -42,6 +44,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    MainView()
+    ContainerView()
 }
 

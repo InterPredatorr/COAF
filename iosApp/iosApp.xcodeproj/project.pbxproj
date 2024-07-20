@@ -43,6 +43,11 @@
 		667BAF1B2C4978BF00C960EF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 667BAF1A2C4978BF00C960EF /* GoogleSignIn */; };
 		667BAF1D2C4978BF00C960EF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 667BAF1C2C4978BF00C960EF /* GoogleSignInSwift */; };
 		667BAF212C4988D000C960EF /* Array + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BAF202C4988CF00C960EF /* Array + Extensions.swift */; };
+		667BAF232C4BDBCB00C960EF /* Stringable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BAF222C4BDBCA00C960EF /* Stringable.swift */; };
+		66B2BA852C4BF87F002BF9F7 /* PairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA842C4BF87F002BF9F7 /* PairView.swift */; };
+		66B2BA872C4BF919002BF9F7 /* TextChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */; };
+		66B2BA892C4BF9C1002BF9F7 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */; };
+		66B2BA8B2C4BFCEA002BF9F7 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +86,11 @@
 		0D9A37DB2BF9570000892CCE /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		667BAF202C4988CF00C960EF /* Array + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extensions.swift"; sourceTree = "<group>"; };
+		667BAF222C4BDBCA00C960EF /* Stringable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stringable.swift; sourceTree = "<group>"; };
+		66B2BA842C4BF87F002BF9F7 /* PairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairView.swift; sourceTree = "<group>"; };
+		66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChangeView.swift; sourceTree = "<group>"; };
+		66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* COAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 				0D9A37BE2BF8EDF800892CCE /* String + Extensions.swift */,
 				0D9A37C62BF930AE00892CCE /* View + Extensions.swift */,
 				667BAF202C4988CF00C960EF /* Array + Extensions.swift */,
+				667BAF222C4BDBCA00C960EF /* Stringable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +275,10 @@
 				0D9A37C42BF925F200892CCE /* CardView.swift */,
 				0D9A37D52BF94D2C00892CCE /* DS.swift */,
 				0D9A37DB2BF9570000892CCE /* AsyncImageView.swift */,
+				66B2BA842C4BF87F002BF9F7 /* PairView.swift */,
+				66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */,
+				66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */,
+				66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -416,6 +431,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				0D3386412BE787C800940188 /* LoginView.swift in Sources */,
 				0D33866F2BE7CDBD00940188 /* ResourcesView.swift in Sources */,
+				66B2BA8B2C4BFCEA002BF9F7 /* TextView.swift in Sources */,
 				0D3386372BE785FC00940188 /* BottomBarViewModel.swift in Sources */,
 				0D3386392BE7863D00940188 /* BottomBarView.swift in Sources */,
 				0D3386522BE789A400940188 /* MyProfileView.swift in Sources */,
@@ -425,15 +441,19 @@
 				0D9A37C32BF8F71D00892CCE /* MenuView.swift in Sources */,
 				0D3386642BE7C6C000940188 /* EnvironmentValues.swift in Sources */,
 				667BAF212C4988D000C960EF /* Array + Extensions.swift in Sources */,
+				66B2BA852C4BF87F002BF9F7 /* PairView.swift in Sources */,
+				667BAF232C4BDBCB00C960EF /* Stringable.swift in Sources */,
 				0D9A37DA2BF9528200892CCE /* PeopleViewModel.swift in Sources */,
 				0D3386432BE787D100940188 /* LoginViewModel.swift in Sources */,
 				0D33864D2BE7898300940188 /* HomeView.swift in Sources */,
 				0D33865F2BE7A81700940188 /* MyProfileViewModel.swift in Sources */,
+				66B2BA872C4BF919002BF9F7 /* TextChangeView.swift in Sources */,
 				0D9A37C72BF930AE00892CCE /* View + Extensions.swift in Sources */,
 				0D3386662BE7C75200940188 /* UIApplication.swift in Sources */,
 				0D33866B2BE7CD9500940188 /* AboutMeView.swift in Sources */,
 				0D33863C2BE7878000940188 /* MainView.swift in Sources */,
 				0D9A37C12BF8F12F00892CCE /* CalendarDatePicker.swift in Sources */,
+				66B2BA892C4BF9C1002BF9F7 /* ButtonView.swift in Sources */,
 				0D3386562BE789B700940188 /* PeopleView.swift in Sources */,
 				0D9A37C52BF925F200892CCE /* CardView.swift in Sources */,
 				0D9A37BD2BF8EDEF00892CCE /* Date + Extensions.swift in Sources */,

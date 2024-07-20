@@ -59,3 +59,7 @@ struct PeopleView: View {
     PeopleView()
         .environmentObject(PeopleViewModel())
 }
+
+#Preview {
+    ContainerView()
+}

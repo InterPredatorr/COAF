@@ -17,3 +17,7 @@ struct ResourcesView: View {
 #Preview {
     ResourcesView()
 }
+
+#Preview {
+    ContainerView()
+}
