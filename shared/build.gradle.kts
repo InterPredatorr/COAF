@@ -32,6 +32,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.okio)
             implementation(libs.kotlinx.io.core)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }

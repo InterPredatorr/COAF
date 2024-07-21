@@ -1,14 +1,14 @@
 package entity
 
-data class CoafCertificate(
-    val providerName: String,
-    val yearOfProvision: Int,
-    val name: String
+data class Certificate(
+    var providerName: String,
+    var yearOfProvision: String,
+    var name: String
 ) {
     companion object {
-        val empty = Certificate(
+        fun empty() = Certificate(
             "Arteni's Middle School",
-            2019,
+            "Aug 2019",
             "School Completion"
         )
     }
