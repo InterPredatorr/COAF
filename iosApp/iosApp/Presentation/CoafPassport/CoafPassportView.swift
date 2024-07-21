@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct CoafPassportView: View {
     
@@ -32,9 +33,12 @@ extension CoafPassportView {
             ForEach($viewModel.user.programs, id: \.id) { program in
                 CardView {
                     VStack(spacing: 5) {
-                        PairView(title: "Name:") { TextView(text: program.name) }
+                        PairView(title: "Name:") { 
+                            TextView(text: program.name, alignment: .trailing)
+                        }
                         PairView(title: "Issue Date:") {
-                            CalendarDatePicker(selectedDate: program.issueDate)
+                            DayMonthYearDatePicker(date: program.issueDate,
+                                                   alignment: .trailing)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -50,15 +54,17 @@ extension CoafPassportView {
             ForEach($viewModel.user.clubs, id: \.id) { club in
                 CardView {
                     VStack(spacing: 10) {
-                        PairView(title: "Name:") { Text(club.name.wrappedValue) }
+                        PairView(title: "Name:") {
+                            TextView(text: club.name, alignment: .trailing)
+                        }
                         PairView(title: "Position:") {
-                            MenuView(title: club.position.wrappedValue.toString,
+                            MenuView(title: club.position.wrappedValue.stringValue,
                                      current: club.position,
-                                     options: CoafClubPosition.allCases)
+                                     options: CoafClubPosition.entries,
+                                     alignment: .trailing)
                         }
                         
                     }
-                    .padding(.horizontal)
                     .frame(maxWidth: .infinity)
                 }
             }

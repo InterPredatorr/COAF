@@ -13,12 +13,15 @@ struct CardView<Content: View>: View {
     var color: Color = .backgroundPrimary
     var cornerRadius: CGFloat = 16
     var leading: CGFloat = 5
+    var trailing: CGFloat = 5
     @ViewBuilder var contentView: () -> Content
     
     var body: some View {
         contentView()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            .padding(.leading, leading)
+            .padding(.trailing, trailing)
+            .padding(.vertical)
             .background(color)
             .cornerRadius(cornerRadius)
             .overlay(RoundedRectangle(cornerRadius: cornerRadius)

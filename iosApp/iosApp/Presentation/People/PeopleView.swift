@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct PeopleView: View {
     
@@ -17,17 +18,16 @@ struct PeopleView: View {
             VStack {
                 TextFieldView(text: $viewModel.filter.text, placeholder: "Search people...")
                 ScrollView {
-                    List(User.users, id: \.email) { user in
+                    List(viewModel.users.indices, id: \.self) { index in
                         HStack {
-                            AsyncImageView(url: user.imageUrl, size: 32)
+                            AsyncImageView(url: viewModel.users[index].imageUrl, size: 32)
                             VStack {
-                                Text(user.fullname)
-                                Text(user.placeOfBirth.descrition)
+                                Text(viewModel.users[index].fullname)
+                                Text(viewModel.users[index].placeOfBirth.description_)
                             }
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 80)
-                        
                     }
                 }
             }

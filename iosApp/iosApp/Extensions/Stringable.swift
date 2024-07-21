@@ -7,14 +7,26 @@
 //
 
 import Foundation
+import Shared
 
 protocol Stringable {
-    var toString: String { get }
+    var stringValue: String { get }
 }
 
 extension String: Stringable {
-    var toString: String { self.capitalized }
+    var stringValue: String {
+        self.capitalized
+    }    
 }
-extension Date: Stringable {
-    var toString: String { self.stringValue.capitalized }
+
+extension Gender: Stringable {
+    var stringValue: String {
+        self.name.lowercased().capitalized
+    }
+}
+
+extension CoafClubPosition: Stringable {
+    var stringValue: String {
+        self.name.lowercased().capitalized
+    }
 }

@@ -17,13 +17,27 @@ struct TextView: View {
     var placeholder: String = ""
     var lineLimit: Int = 1
     var locked: Bool = false
+    var alignment: Alignment = .leading
+    
+    var horizontalAlignment: HorizontalAlignment {
+        return switch alignment {
+        case .leading:
+                .leading
+        case .center:
+                .center
+        case .trailing:
+                .trailing
+        default:
+                .leading
+        }
+    }
     
     var fraction: CGFloat {
         1 / (UIScreen.main.bounds.height / CGFloat(lineLimit * 40 + 200))
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: horizontalAlignment, spacing: 5) {
             if !title.isEmpty {
                 Text(title)
                     .foregroundStyle(Color.textPrimary)
@@ -33,12 +47,13 @@ struct TextView: View {
                     Text(placeholder)
                         .foregroundStyle(.gray)
                         .lineLimit(lineLimit)
+                        .frame(maxWidth: .infinity, alignment: alignment)
                 } else {
                     Text(text)
                         .lineLimit(lineLimit)
+                        .frame(maxWidth: .infinity, alignment: alignment)
                 }
             }
-            .fixedSize(horizontal: false, vertical: true)
             .onTapGesture {
                 if !locked {
                     isPresented = true

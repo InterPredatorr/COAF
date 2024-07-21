@@ -96,7 +96,7 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
 
 #Preview {
     struct S: Stringable {
-        var toString: String = "hello"
+        var stringValue: String = "hello"
     }
     return TextFieldView(text: .constant(""), title: "gegfe", placeholder: "gege")
 }

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct AboutMeView: View {
     private let imageSize = 120.0
@@ -21,7 +22,7 @@ struct AboutMeView: View {
                         .font(.largeTitle)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
-                    Text(viewModel.user.placeOfBirth.descrition)
+                    Text(viewModel.user.placeOfBirth.description_)
                     Divider()
                     contactInfo
                     placeOfBirth
@@ -29,6 +30,7 @@ struct AboutMeView: View {
                     about
                     citizenship
                     education
+                    workExperience
                     Divider().id("bottom")
                 }
                 .padding(.bottom)
@@ -36,6 +38,9 @@ struct AboutMeView: View {
             }
             .padding(.horizontal)
             .scrollIndicators(.hidden)
+            .onAppear {
+                reader.scrollTo("bottom")
+            }
         }
     }
 }
@@ -61,16 +66,15 @@ extension AboutMeView {
                 VStack(alignment: .leading) {
                     Text("Birthday")
                     CardView {
-                        CalendarDatePicker(selectedDate: $viewModel.user.birthday)
-                            
+                        DayMonthYearDatePicker(date: $viewModel.user.birthday)
                     }
                 }
                 VStack(alignment: .leading) {
                     Text("Gender")
                     CardView {
-                        MenuView(title: viewModel.user.gender.toString,
+                        MenuView(title: viewModel.user.gender.stringValue,
                                  current: $viewModel.user.gender,
-                                 options: Gender.allCases)
+                                 options: Gender.entries)
                     }
                 }
                 
@@ -132,13 +136,42 @@ extension AboutMeView {
     var education: some View {
         VStack {
             sectionHeaderText("Education")
-            //            ForEach(viewModel.user.universities) { university in
-            //                CardView {
-            //                    VStack {
-            //
-            //                    }
-            //                }
-            //            }
+            ForEach($viewModel.user.educations, id: \.id) { education in
+                let ed = education.wrappedValue
+                CardView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(ed.universityName)
+                            .font(.system(size: 20, weight: .black))
+                        Text([ed.faculty, ed.department].joined(separator: " - "))
+                        HStack {
+                            MonthYearDatePicker(date: education.startDate)
+                            Text(" - ")
+                            MonthYearDatePicker(date: education.endDate)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    var workExperience: some View {
+        VStack {
+            sectionHeaderText("Experience")
+            ForEach($viewModel.user.workExperiences, id: \.id) { experience in
+                let exp = experience.wrappedValue
+                CardView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(exp.position)
+                            .font(.system(size: 20, weight: .black))
+                        Text([exp.employee, exp.employmentType.value].joined(separator: " - "))
+                        HStack {
+                            MonthYearDatePicker(date: experience.startDate)
+                            Text(" - ")
+                            MonthYearDatePicker(date: experience.endDate)
+                        }
+                    }
+                }
+            }
         }
     }
     

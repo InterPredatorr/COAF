@@ -14,16 +14,33 @@ struct MenuView<S: Stringable & Hashable>: View {
     var title: String
     @Binding var current: S
     let options: [S]
+    var alignment: Alignment = .center
     
     var body: some View {
-        Menu(title) {
+        Menu {
             ForEach(options, id: \.self) { option in
-                Button(option.toString.capitalized) {
+                Button(option.stringValue) {
                     current = option
                 }
             }
+        } label: {
+            HStack {
+                if alignment == .trailing {
+                    Spacer()
+                }
+                Text(title)
+                if alignment == .center {
+                    Spacer()
+                }
+                Image(systemName: "chevron.down")
+                    .foregroundStyle(Color.accentColor)
+                if alignment == .leading {
+                    Spacer()
+                }
+            }
+            
         }
-        .foregroundStyle(Color.accentColor)
+        
     }
 }
 

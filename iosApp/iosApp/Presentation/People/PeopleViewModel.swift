@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import Shared
 
 struct Filter {
     var text: String
     var gender: Gender
     var region: String
-    var university: University
+    var education: Education
     
-    static let empty = Self(text: "", gender: .other, region: "", university: .empty)
+    static let empty = Self(text: "", gender: .other, region: "", education: .companion.empty())
 }
 
 
@@ -23,4 +24,5 @@ class PeopleViewModel: ObservableObject {
     
     @Published var persons: [User] = []
     @Published var filter: Filter = .empty
+    var users = User.companion.users()
 }

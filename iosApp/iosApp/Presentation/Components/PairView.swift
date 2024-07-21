@@ -20,6 +20,7 @@ struct PairView<Content: View>: View {
             Spacer()
             value()
                 .foregroundStyle(.textPrimary)
+                .frame(alignment: .trailing)
         }
     }
 }

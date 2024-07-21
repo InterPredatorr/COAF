@@ -29,8 +29,6 @@
 		0D33866D2BE7CDAA00940188 /* CoafPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33866C2BE7CDAA00940188 /* CoafPassportView.swift */; };
 		0D33866F2BE7CDBD00940188 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33866E2BE7CDBD00940188 /* ResourcesView.swift */; };
 		0D3386722BE7DB6900940188 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3386712BE7DB6900940188 /* TextFieldView.swift */; };
-		0D9A37BD2BF8EDEF00892CCE /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A37BC2BF8EDEF00892CCE /* Date + Extensions.swift */; };
-		0D9A37BF2BF8EDF800892CCE /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A37BE2BF8EDF800892CCE /* String + Extensions.swift */; };
 		0D9A37C12BF8F12F00892CCE /* CalendarDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A37C02BF8F12F00892CCE /* CalendarDatePicker.swift */; };
 		0D9A37C32BF8F71D00892CCE /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A37C22BF8F71D00892CCE /* MenuView.swift */; };
 		0D9A37C52BF925F200892CCE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A37C42BF925F200892CCE /* CardView.swift */; };
@@ -48,6 +46,9 @@
 		66B2BA872C4BF919002BF9F7 /* TextChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */; };
 		66B2BA892C4BF9C1002BF9F7 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */; };
 		66B2BA8B2C4BFCEA002BF9F7 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */; };
+		66B2BA8D2C4D2FEF002BF9F7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8C2C4D2FEF002BF9F7 /* String.swift */; };
+		66B2BA8F2C4D306C002BF9F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8E2C4D306C002BF9F7 /* Date.swift */; };
+		66B2BA912C4D333C002BF9F7 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA902C4D333C002BF9F7 /* Int.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,8 +75,6 @@
 		0D33866E2BE7CDBD00940188 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 		0D3386712BE7DB6900940188 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		0D3386732BE7E87F00940188 /* AppConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppConfig.json; sourceTree = "<group>"; };
-		0D9A37BC2BF8EDEF00892CCE /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
-		0D9A37BE2BF8EDF800892CCE /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		0D9A37C02BF8F12F00892CCE /* CalendarDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDatePicker.swift; sourceTree = "<group>"; };
 		0D9A37C22BF8F71D00892CCE /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		0D9A37C42BF925F200892CCE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -91,6 +90,9 @@
 		66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChangeView.swift; sourceTree = "<group>"; };
 		66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		66B2BA8C2C4D2FEF002BF9F7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		66B2BA8E2C4D306C002BF9F7 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		66B2BA902C4D333C002BF9F7 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* COAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -233,11 +235,12 @@
 			children = (
 				0D3386632BE7C6C000940188 /* EnvironmentValues.swift */,
 				0D3386652BE7C75200940188 /* UIApplication.swift */,
-				0D9A37BC2BF8EDEF00892CCE /* Date + Extensions.swift */,
-				0D9A37BE2BF8EDF800892CCE /* String + Extensions.swift */,
 				0D9A37C62BF930AE00892CCE /* View + Extensions.swift */,
 				667BAF202C4988CF00C960EF /* Array + Extensions.swift */,
 				667BAF222C4BDBCA00C960EF /* Stringable.swift */,
+				66B2BA8C2C4D2FEF002BF9F7 /* String.swift */,
+				66B2BA8E2C4D306C002BF9F7 /* Date.swift */,
+				66B2BA902C4D333C002BF9F7 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -437,9 +440,9 @@
 				0D3386522BE789A400940188 /* MyProfileView.swift in Sources */,
 				0D3386722BE7DB6900940188 /* TextFieldView.swift in Sources */,
 				0D9A37D82BF9506000892CCE /* FilterView.swift in Sources */,
-				0D9A37BF2BF8EDF800892CCE /* String + Extensions.swift in Sources */,
 				0D9A37C32BF8F71D00892CCE /* MenuView.swift in Sources */,
 				0D3386642BE7C6C000940188 /* EnvironmentValues.swift in Sources */,
+				66B2BA912C4D333C002BF9F7 /* Int.swift in Sources */,
 				667BAF212C4988D000C960EF /* Array + Extensions.swift in Sources */,
 				66B2BA852C4BF87F002BF9F7 /* PairView.swift in Sources */,
 				667BAF232C4BDBCB00C960EF /* Stringable.swift in Sources */,
@@ -452,12 +455,13 @@
 				0D3386662BE7C75200940188 /* UIApplication.swift in Sources */,
 				0D33866B2BE7CD9500940188 /* AboutMeView.swift in Sources */,
 				0D33863C2BE7878000940188 /* MainView.swift in Sources */,
+				66B2BA8D2C4D2FEF002BF9F7 /* String.swift in Sources */,
 				0D9A37C12BF8F12F00892CCE /* CalendarDatePicker.swift in Sources */,
 				66B2BA892C4BF9C1002BF9F7 /* ButtonView.swift in Sources */,
 				0D3386562BE789B700940188 /* PeopleView.swift in Sources */,
 				0D9A37C52BF925F200892CCE /* CardView.swift in Sources */,
-				0D9A37BD2BF8EDEF00892CCE /* Date + Extensions.swift in Sources */,
 				0D3386482BE7881C00940188 /* ContainerView.swift in Sources */,
+				66B2BA8F2C4D306C002BF9F7 /* Date.swift in Sources */,
 				0D33864A2BE7882E00940188 /* ContainerViewModel.swift in Sources */,
 				0D33866D2BE7CDAA00940188 /* CoafPassportView.swift in Sources */,
 				0D9A37DC2BF9570000892CCE /* AsyncImageView.swift in Sources */,

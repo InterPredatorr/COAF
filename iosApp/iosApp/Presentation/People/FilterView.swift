@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct FilterView: View {
     
@@ -14,9 +15,9 @@ struct FilterView: View {
     
     var body: some View {
             HStack {
-                ForEach(Gender.allCases, id: \.rawValue) { option in
+                ForEach(Gender.entries, id: \.name) { option in
                     if option == .male { Spacer() }
-                    Label(option.rawValue.capitalized,
+                    Label(option.name.capitalized,
                           systemImage: isSelected(option) ? "checkmark.circle.fill" : "circlebadge")
                     .foregroundStyle(isSelected(option) ? Color.accentColor : .textPrimary)
                     .onTapGesture {
