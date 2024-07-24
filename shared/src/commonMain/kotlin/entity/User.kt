@@ -41,7 +41,7 @@ data class User(
         about = "I'm Sevak, from Arteni, I'm studying in Yerevan State University, at the faculty of Informatics and Applied Mathematics. In parallel, I'm working at PicsArt as a Software Engineer.",
         isSmartCitizen = true,
         educations = listOf(Education.empty(), Education.empty()),
-        workExperiences = listOf(WorkExperience.empty()),
+        workExperiences = listOf(WorkExperience.empty(), WorkExperience.empty()),
         activities = listOf(CoafActivity.empty()),
         certificates = listOf(Certificate.empty()),
         skills = emptyList(),

@@ -30,3 +30,9 @@ extension CoafClubPosition: Stringable {
         self.name.lowercased().capitalized
     }
 }
+
+extension EmploymentType: Stringable {
+    var stringValue: String {
+        self.value.lowercased().capitalized
+    }
+}

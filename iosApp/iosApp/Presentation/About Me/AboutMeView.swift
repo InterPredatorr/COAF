@@ -29,8 +29,9 @@ struct AboutMeView: View {
                     currentResidence
                     about
                     citizenship
-                    education
-                    workExperience
+                    educationsList
+                    experiencesList
+                    activitiesList
                     Divider().id("bottom")
                 }
                 .padding(.bottom)
@@ -63,21 +64,14 @@ extension AboutMeView {
                      title: "Father Name",
                      placeholder: "Enter your father name")
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Birthday")
-                    CardView {
-                        DayMonthYearDatePicker(date: $viewModel.user.birthday)
-                    }
+                CardView(title: "Birthday", font: .system(size: 14, weight: .bold)) {
+                    DayMonthYearDatePicker(date: $viewModel.user.birthday)
                 }
-                VStack(alignment: .leading) {
-                    Text("Gender")
-                    CardView {
-                        MenuView(title: viewModel.user.gender.stringValue,
-                                 current: $viewModel.user.gender,
-                                 options: Gender.entries)
-                    }
+                CardView(title: "Gender", font: .system(size: 14, weight: .bold)) {
+                    MenuView(title: viewModel.user.gender.stringValue,
+                             current: $viewModel.user.gender,
+                             options: Gender.entries)
                 }
-                
             }
             TextView(text: $viewModel.user.email,
                      title: "Email",
@@ -133,48 +127,103 @@ extension AboutMeView {
         .padding(.trailing, 5)
     }
     
-    var education: some View {
+    var educationsList: some View {
         VStack {
             sectionHeaderText("Education")
-            ForEach($viewModel.user.educations, id: \.id) { education in
-                let ed = education.wrappedValue
-                CardView {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(ed.universityName)
-                            .font(.system(size: 20, weight: .black))
-                        Text([ed.faculty, ed.department].joined(separator: " - "))
-                        HStack {
-                            MonthYearDatePicker(date: education.startDate)
-                            Text(" - ")
-                            MonthYearDatePicker(date: education.endDate)
-                        }
-                    }
-                }
+            ForEach($viewModel.user.educations, id: \.id) { ed in
+                education(ed)
             }
         }
     }
     
-    var workExperience: some View {
+    @ViewBuilder
+    func education(_ education: Binding<Education>) -> some View {
+        @State var ed = education.wrappedValue
+        EditableView(title: "University") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(ed.universityName)
+                    .font(.system(size: 20, weight: .black))
+                Text([ed.faculty, ed.department].joined(separator: " - "))
+                Text([ed.startDate, ed.endDate].joined(separator: " - "))
+            }
+        } editor: {
+            
+            TextFieldView(text: $ed.universityName, title: "University", font: .system(size: 20, weight: .bold))
+            TextFieldView(text: $ed.faculty, title: "Faculty", font: .system(size: 20, weight: .bold))
+            TextFieldView(text: $ed.department, title: "Department", font: .system(size: 20, weight: .bold))
+            MonthYearDatePicker(date: $ed.startDate, title: "Start Date")
+            MonthYearDatePicker(date: $ed.endDate, title: "End Date")
+        } onSave: {
+            if let index = viewModel.user.educations.firstIndex(where: { $0.id == ed.id }) {
+                viewModel.user.educations[index] = ed
+            }
+        }
+    }
+    
+    var experiencesList: some View {
         VStack {
             sectionHeaderText("Experience")
             ForEach($viewModel.user.workExperiences, id: \.id) { experience in
-                let exp = experience.wrappedValue
-                CardView {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(exp.position)
-                            .font(.system(size: 20, weight: .black))
-                        Text([exp.employee, exp.employmentType.value].joined(separator: " - "))
-                        HStack {
-                            MonthYearDatePicker(date: experience.startDate)
-                            Text(" - ")
-                            MonthYearDatePicker(date: experience.endDate)
-                        }
-                    }
-                }
+                workExperience(experience: experience)
             }
         }
     }
     
+    @ViewBuilder
+    func workExperience(experience: Binding<WorkExperience>) -> some View {
+        @State var exp = experience.wrappedValue
+        EditableView(title: "Experience") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(experience.wrappedValue.position)
+                    .font(.system(size: 20, weight: .black))
+                Text([experience.wrappedValue.employee, experience.wrappedValue.employmentType.value].joined(separator: " - "))
+                Text([experience.wrappedValue.startDate, experience.wrappedValue.endDate].joined(separator: " - "))
+            }
+        } editor: {
+            TextFieldView(text: $exp.position, title: "University", font: .system(size: 20, weight: .bold))
+            TextFieldView(text: $exp.employee, title: "Faculty", font: .system(size: 20, weight: .bold))
+            CardView(title: "Employment Type") {
+                MenuView(title: exp.employmentType.stringValue,
+                         current: $exp.employmentType,
+                         options: EmploymentType.entries)
+            }
+            MonthYearDatePicker(date: $exp.startDate, title: "Start Date")
+            MonthYearDatePicker(date: $exp.endDate, title: "End Date")
+        } onSave: {
+            if let index = viewModel.user.workExperiences.firstIndex(where: { $0.id == exp.id }) {
+                viewModel.user.workExperiences[index] = exp
+            }
+        }
+    }
+    
+    var activitiesList: some View {
+        VStack {
+            sectionHeaderText("Activities")
+            ForEach($viewModel.user.activities, id: \.id) { act in
+                activity(activity: act)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func activity(activity: Binding<CoafActivity>) -> some View {
+        @State var act = activity.wrappedValue
+        EditableView(title: "Activity") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(activity.wrappedValue.name)
+                    .font(.system(size: 20, weight: .black))
+                Text([activity.wrappedValue.startDate, activity.wrappedValue.endDate].joined(separator: " - "))
+            }
+        } editor: {
+            TextFieldView(text: $act.name, title: "Acitivity Name", font: .system(size: 20, weight: .bold))
+            MonthYearDatePicker(date: $act.startDate, title: "Start Date")
+            MonthYearDatePicker(date: $act.endDate, title: "End Date")
+        } onSave: {
+            if let index = viewModel.user.activities.firstIndex(where: { $0.id == act.id }) {
+                viewModel.user.activities[index] = act
+            }
+        }
+    }
     
 }
 

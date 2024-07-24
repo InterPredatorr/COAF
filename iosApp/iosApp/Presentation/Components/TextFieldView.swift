@@ -17,6 +17,7 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
     @Binding var text: String
     var value: String
     var title: String
+    var font: Font
     var placeholder: String?
     var lineLimit: Int
     var locked: Bool
@@ -32,6 +33,7 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
     init(text: Binding<String>? = nil,
          value: String = "",
          title: String = "",
+         font: Font = .system(size: 14, weight: .semibold),
          placeholder: String? = nil,
          lineLimit: Int? = nil,
          locked: Bool = false,
@@ -46,6 +48,7 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
         }
         self.value = value
         self.title = title
+        self.font = font
         self.placeholder = placeholder
         self.lineLimit = lineLimit ?? 1
         self.locked = locked
@@ -58,6 +61,7 @@ struct TextFieldView<RightButton: View, LeftButton: View>: View {
             if !title.isEmpty {
                 Text(title)
                     .foregroundStyle(Color.textPrimary)
+                    .font(font)
             }
             content
             .disabled(locked)

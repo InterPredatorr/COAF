@@ -45,83 +45,53 @@ struct DayMonthYearDatePicker: View {
 
 struct MonthYearDatePicker: View {
     
+    @Environment(\.dismiss) private var dismiss
     @Binding var date: String
-    @State private var month: String
-    @State private var year: String
-    @State private var isPresented = false
-    @State private var height: CGFloat = 0.0
+    let title: String
+    @State var month: String
+    @State var year: String
+    let startYear = 1950
+    let endYear = 2050
     
-    init(date: Binding<String>) {
+    init(date: Binding<String>, title: String) {
         self._date = date
+        self.title = title
         self.month = String(date.wrappedValue.dropLast(5))
         self.year = String(date.wrappedValue.dropFirst(4))
     }
     
     var body: some View {
-        Text(date)
-            .onTapGesture {
-                isPresented.toggle()
-            }
-            .sheet(isPresented: $isPresented) {
-                MonthYearPicker(date: $date, month: $month, year: $year, height: $height)
-                    .presentationDetents([.height(height)])
-            }
-    }
-}
-
-private struct MonthYearPicker: View {
-    
-    @Environment(\.dismiss) private var dismiss
-    @Binding var date: String
-    @Binding var month: String
-    @Binding var year: String
-    @Binding var height: CGFloat
-    let startYear = 1950
-    let endYear = 2050
-    
-    var body: some View {
-        VStack {
-            Text(date)
-            HStack {
-                Picker("", selection: $month) {
-                    ForEach(Calendar.current.shortMonthSymbols, id: \.stringValue) { m in
-                        Text(m).tag(m)
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title)
+                .font(.system(size: 18, weight: .bold))
+            CardView {
+                HStack {
+                    Picker("", selection: $month) {
+                        ForEach(Calendar.current.shortMonthSymbols, id: \.stringValue) { m in
+                            Text(m).tag(m)
+                        }
+                    }
+                    .frame(maxHeight: .infinity)
+                    .pickerStyle(.wheel)
+                    .tag("month")
+                    .onChange(of: month) { newMonth in
+                        updateDate(newMonth: newMonth, newYear: year)
+                    }
+                    Picker("", selection: $year) {
+                        ForEach(startYear...endYear, id: \.description) { y in
+                            Text(String(y)).tag(y)
+                        }
+                    }
+                    .frame(maxHeight: .infinity)
+                    .pickerStyle(.wheel)
+                    .tag("year")
+                    .onChange(of: year) { newYear in
+                        updateDate(newMonth: month, newYear: newYear)
                     }
                 }
-                .frame(maxHeight: .infinity)
-                .pickerStyle(.wheel)
-                .tag("month")
-                .onChange(of: month) { newMonth in
-                    updateDate(newMonth: newMonth, newYear: year)
-                }
-                Picker("", selection: $year) {
-                    ForEach(startYear...endYear, id: \.description) { y in
-                        Text(String(y)).tag(y)
-                    }
-                }
-                .frame(maxHeight: .infinity)
-                .pickerStyle(.wheel)
-                .tag("year")
-                .onChange(of: year) { newYear in
-                    updateDate(newMonth: month, newYear: newYear)
-                }
-            }
-            .frame(height: 200)
-            ButtonView(title: "Save") {
-                dismiss()
+                .frame(height: 200)
             }
         }
-        .padding()
-        .overlay {
-            GeometryReader { geometry in
-                Color.clear.preference(key: InnerHeightPreferenceKey.self,
-                                       value: geometry.size.height)
-            }
-        }
-        .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
-            height = newHeight
-        }
-        .presentationDetents([.height(height)])
     }
     
     private func updateDate(newMonth: String, newYear: String) {

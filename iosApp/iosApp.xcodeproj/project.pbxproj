@@ -49,6 +49,8 @@
 		66B2BA8D2C4D2FEF002BF9F7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8C2C4D2FEF002BF9F7 /* String.swift */; };
 		66B2BA8F2C4D306C002BF9F7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA8E2C4D306C002BF9F7 /* Date.swift */; };
 		66B2BA912C4D333C002BF9F7 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2BA902C4D333C002BF9F7 /* Int.swift */; };
+		66C127C22C515791000D18C5 /* EditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C127C12C515791000D18C5 /* EditingView.swift */; };
+		66C127C42C515955000D18C5 /* EditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C127C32C515955000D18C5 /* EditableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,8 @@
 		66B2BA8C2C4D2FEF002BF9F7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		66B2BA8E2C4D306C002BF9F7 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		66B2BA902C4D333C002BF9F7 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		66C127C12C515791000D18C5 /* EditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingView.swift; sourceTree = "<group>"; };
+		66C127C32C515955000D18C5 /* EditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* COAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				66B2BA862C4BF919002BF9F7 /* TextChangeView.swift */,
 				66B2BA882C4BF9C1002BF9F7 /* ButtonView.swift */,
 				66B2BA8A2C4BFCEA002BF9F7 /* TextView.swift */,
+				66C127C12C515791000D18C5 /* EditingView.swift */,
+				66C127C32C515955000D18C5 /* EditableView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				0D3386412BE787C800940188 /* LoginView.swift in Sources */,
 				0D33866F2BE7CDBD00940188 /* ResourcesView.swift in Sources */,
 				66B2BA8B2C4BFCEA002BF9F7 /* TextView.swift in Sources */,
+				66C127C22C515791000D18C5 /* EditingView.swift in Sources */,
 				0D3386372BE785FC00940188 /* BottomBarViewModel.swift in Sources */,
 				0D3386392BE7863D00940188 /* BottomBarView.swift in Sources */,
 				0D3386522BE789A400940188 /* MyProfileView.swift in Sources */,
@@ -454,6 +461,7 @@
 				0D9A37C72BF930AE00892CCE /* View + Extensions.swift in Sources */,
 				0D3386662BE7C75200940188 /* UIApplication.swift in Sources */,
 				0D33866B2BE7CD9500940188 /* AboutMeView.swift in Sources */,
+				66C127C42C515955000D18C5 /* EditableView.swift in Sources */,
 				0D33863C2BE7878000940188 /* MainView.swift in Sources */,
 				66B2BA8D2C4D2FEF002BF9F7 /* String.swift in Sources */,
 				0D9A37C12BF8F12F00892CCE /* CalendarDatePicker.swift in Sources */,
