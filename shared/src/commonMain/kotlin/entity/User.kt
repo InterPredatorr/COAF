@@ -1,33 +1,36 @@
 package entity
 
+import kotlinx.serialization.Serializable
 import utils.randomUUID
 
+@Serializable
 data class User(
-    var id: String = randomUUID(),
-    var imageUrl: String,
-    var name: String,
-    var surname: String,
-    var fatherName: String,
-    var birthday: String,
-    var gender: Gender,
-    var email: String,
-    var mobilePhone: String,
-    var placeOfBirth: Address,
-    var currentResidence: Address,
-    var about: String,
-    var isSmartCitizen: Boolean,
-    var educations: List<Education>,
-    var workExperiences: List<WorkExperience>,
-    var activities: List<CoafActivity>,
-    var certificates: List<Certificate>,
-    var skills: List<String>,
-    var programs: List<CoafPassportProgram>,
-    var clubs: List<CoafClub>
+    var id: String,
+    var imageUrl: String? = null,
+    var name: String? = null,
+    var surname: String? = null,
+    var fatherName: String? = null,
+    var birthday: String? = null,
+    var gender: Gender? = null,
+    var email: String? = null,
+    var mobilePhone: String? = null,
+    var placeOfBirth: Address? = null,
+    var currentResidence: Address? = null,
+    var about: String? = null,
+    var isSmartCitizen: Boolean? = null,
+    var educations: List<Education>? = null,
+    var workExperiences: List<WorkExperience>? = null,
+    var activities: List<CoafActivity>? = null,
+    var certificates: List<Certificate>? = null,
+    var skills: List<String>? = null,
+    var programs: List<CoafPassportProgram>? = null,
+    var clubs: List<CoafClub>? = null
 ) {
     val fullname: String
         get() = "$name $surname"
 
     constructor() : this(
+        id = randomUUID(),
         imageUrl = User.imageUrl,
         name = "Sevak",
         surname = "Tadevosyan",

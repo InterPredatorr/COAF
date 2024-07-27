@@ -1,5 +1,8 @@
 package entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Address(
     var country: String,
     var region: String,

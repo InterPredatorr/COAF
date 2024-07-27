@@ -1,7 +1,9 @@
 package entity
 
+import kotlinx.serialization.Serializable
 import utils.randomUUID
 
+@Serializable
 data class CoafClub(
     var id: String = randomUUID(),
     var name: String,

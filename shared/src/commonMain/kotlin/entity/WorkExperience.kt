@@ -4,8 +4,10 @@ import extensions.dayMonthYear
 import extensions.monthNameYear
 import extensions.now
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 import utils.randomUUID
 
+@Serializable
 enum class EmploymentType {
     FULLTIME,
     PARTTIME,
@@ -31,6 +33,7 @@ enum class EmploymentType {
         }
 }
 
+@Serializable
 data class WorkExperience(
     var id: String = randomUUID(),
     var employee: String,

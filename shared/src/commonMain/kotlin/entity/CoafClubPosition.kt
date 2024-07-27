@@ -1,5 +1,8 @@
 package entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class CoafClubPosition {
     ATTENDEE,
     ORGANIZER;

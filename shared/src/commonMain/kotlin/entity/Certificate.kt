@@ -1,5 +1,8 @@
 package entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Certificate(
     var providerName: String,
     var yearOfProvision: String,
