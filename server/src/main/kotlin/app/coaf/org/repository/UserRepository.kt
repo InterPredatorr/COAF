@@ -16,80 +16,63 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlin.reflect.KClass
 import kotlin.reflect.full.memberProperties
 
-object UserRepository {
-    private val users = mutableMapOf<String, User>()
-
-    fun getUserById(id: String): User? = users[id]
-
-    fun isUserExists(userId: String): Boolean = users[userId] != null
-
-    fun updateUser(user: User) {
-        users[user.id] = user
-    }
-
-    fun addUser(user: User) {
-        users[user.id] = user
-    }
-
-    fun deleteUser(id: String) {
-        users.remove(id)
-    }
-
-    fun getUserFieldKeys(): Set<String> {
-        return getFieldKeys(User::class)
-    }
-
-    private fun getFieldKeys(klass: KClass<*>): Set<String> {
-        val keys = mutableSetOf<String>()
-
-        for (property in klass.memberProperties) {
-            val propertyName = property.name
-            keys.add(propertyName)
-
-            val propertyType = property.returnType.classifier as? KClass<*> ?: continue
-
-            if (propertyType.isData) {
-                keys.addAll(getFieldKeys(propertyType))
-            } else if (property.returnType.isMarkedNullable) {
-                val nullableType = property.returnType.arguments.firstOrNull()?.type?.classifier as? KClass<*>
-                if (nullableType?.isData == true) {
-                    keys.addAll(getFieldKeys(nullableType))
-                }
-            }
-        }
-        return keys
-    }
+interface UserRepository {
+    suspend fun addUser(user: User):User?
+    suspend fun updateUser(user: User):Boolean
+    suspend fun deleteUser(email: String):Boolean
+    suspend fun getUsers():List<User>
+    suspend fun searchUser(query: String):List<User>
+    suspend fun getUser(email: String):User?
 }
 
-suspend fun ApplicationCall.processUserRequest(isUpdate: Boolean) {
-    val jsonPayload = receive<JsonObject>()
-    if (isUpdate.not() && jsonPayload.keys.contains("id").not()) {
-        return respond(HttpStatusCode.BadRequest, "User cannot be created without user ID")
+fun UserRepository.getUserFieldKeys(): Set<String> {
+    return getFieldKeys(User::class)
+}
+
+fun UserRepository.getFieldKeys(klass: KClass<*>): Set<String> {
+    val keys = mutableSetOf<String>()
+
+    for (property in klass.memberProperties) {
+        val propertyName = property.name
+        keys.add(propertyName)
+
+        val propertyType = property.returnType.classifier as? KClass<*> ?: continue
+
+        if (propertyType.isData) {
+            keys.addAll(getFieldKeys(propertyType))
+        } else if (property.returnType.isMarkedNullable) {
+            val nullableType = property.returnType.arguments.firstOrNull()?.type?.classifier as? KClass<*>
+            if (nullableType?.isData == true) {
+                keys.addAll(getFieldKeys(nullableType))
+            }
+        }
     }
-    if (!validateUser(this, jsonPayload, isUpdate)) {
+    return keys
+}
+
+suspend fun ApplicationCall.processUserRequest(repository: UserRepository, isUpdate: Boolean) {
+    val jsonPayload = receive<JsonObject>()
+    if (!validateUser(repository,this, jsonPayload, isUpdate)) {
         return
     }
 
     val user = Json.decodeFromJsonElement<User>(jsonPayload)
 
     if (isUpdate) {
-        if (jsonPayload.keys.contains("id")) {
-            return respond(HttpStatusCode.BadRequest, "User ID can't be changed")
-        }
-        val userId = parameters["id"] ?: return respond(HttpStatusCode.BadRequest, "Missing user ID")
-        if (UserRepository.isUserExists(userId).not()) {
+        val userEmail = parameters["email"] ?: return respond(HttpStatusCode.BadRequest, "Missing user email")
+        if (repository.getUser(userEmail) == null) {
             return respond(HttpStatusCode.NotFound, "User not found")
         }
-        UserRepository.updateUser(user)
+        repository.updateUser(user)
         respond(HttpStatusCode.OK, "User updated successfully")
     } else {
-        UserRepository.addUser(user)
+        repository.addUser(user)
         respond(HttpStatusCode.Created, "User created successfully")
     }
 }
 
-suspend fun validateUser(call: ApplicationCall, jsonPayload: JsonObject, isUpdate: Boolean): Boolean {
-    val validFields = UserRepository.getUserFieldKeys().toSet()
+suspend fun validateUser(repository: UserRepository, call: ApplicationCall, jsonPayload: JsonObject, isUpdate: Boolean): Boolean {
+    val validFields = repository.getUserFieldKeys().toSet()
 
     val invalidFields = jsonPayload.keys - validFields
     if (invalidFields.isNotEmpty()) {
@@ -106,7 +89,7 @@ suspend fun validateUser(call: ApplicationCall, jsonPayload: JsonObject, isUpdat
         }
         validateNestedObjects(call, jsonPayload)
     } else {
-        val requiredFields = setOf("id", "name", "surname", "email")
+        val requiredFields = setOf("name", "surname", "email")
         val missingFields = requiredFields - jsonPayload.keys
         if (missingFields.isNotEmpty()) {
             call.respond(HttpStatusCode.BadRequest, "Missing required fields: ${missingFields.joinToString()}")

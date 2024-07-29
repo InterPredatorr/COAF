@@ -16,6 +16,7 @@ application {
 dependencies {
     implementation(projects.shared)
     implementation(libs.logback)
+    implementation(platform(libs.ktor.bom))
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
     testImplementation(libs.ktor.server.tests)
@@ -23,15 +24,20 @@ dependencies {
     implementation(libs.ktor.server.status.pages)
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.default.headers)
-    implementation(libs.ktor.moshi)
-    implementation(libs.ktor.server.freemarker)
+    implementation(libs.ktor.server.call.logging)
     implementation(libs.ktor.serialization.kotlinx.json.jvm)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.ktor)
+    implementation(libs.koin.logger.slf4j)
     implementation(libs.postgresql)
     implementation(libs.hikaricp)
     implementation(libs.jdbc.driver)
     implementation(libs.logback)
     implementation(libs.log4j.core)
     implementation(libs.log4j.slf4j.impl)
+    implementation(libs.exposed.core)
+    implementation(libs.exposed.jdbc)
+    implementation(libs.exposed.dao)
 }
 
 sqldelight {

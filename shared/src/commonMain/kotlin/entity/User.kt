@@ -1,18 +1,19 @@
 package entity
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import utils.randomUUID
 
 @Serializable
 data class User(
     var id: String,
+    var name: String,
+    var surname: String,
+    var email: String,
     var imageUrl: String? = null,
-    var name: String? = null,
-    var surname: String? = null,
     var fatherName: String? = null,
     var birthday: String? = null,
     var gender: Gender? = null,
-    var email: String? = null,
     var mobilePhone: String? = null,
     var placeOfBirth: Address? = null,
     var currentResidence: Address? = null,
@@ -30,7 +31,7 @@ data class User(
         get() = "$name $surname"
 
     constructor() : this(
-        id = randomUUID(),
+        id = "1",
         imageUrl = User.imageUrl,
         name = "Sevak",
         surname = "Tadevosyan",
@@ -59,4 +60,17 @@ data class User(
             User(), User()
         )
     }
+}
+
+fun parseAddress(addressString: String): Address {
+    val parts = addressString.split(", ")
+    return Address(
+        country = parts.getOrNull(2) ?: "",
+        region = parts.getOrNull(1) ?: "",
+        city = parts.getOrNull(0) ?: ""
+    )
+}
+
+fun <T> parseItem(jsonString: String): List<T> {
+    return Json.decodeFromString(jsonString)
 }

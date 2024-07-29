@@ -12,16 +12,16 @@ androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose = "1.6.8"
 compose-plugin = "1.6.10"
+exposedCore = "0.52.0"
 hikaricp = "5.1.0"
 jdbcDriver = "2.0.2"
 junit = "4.13.2"
+koin-bom = "3.5.6"
 kotlin = "2.0.0"
 kotlinxDatetime = "0.6.0"
 kotlinxIoCore = "0.3.3"
-ktorMoshi = "1.0.1"
-ktorServerCore = "2.3.12"
-ktorServerSessions = "2.3.11"
-ktorServerStatusPages = "2.3.12"
+ktorBom = "2.3.12"
+
 log4jCore = "2.23.1"
 log4jSlf4jImpl = "2.23.1"
 moshiKotlin = "1.15.1"
@@ -29,15 +29,23 @@ okio = "3.9.0"
 postgresql = "42.7.3"
 serialization = "1.9.23"
 kotlinxSerializationJson = "1.6.3"
-ktor = "2.3.12"
 logback = "1.5.6"
 coreI18n = "1.0.0-alpha01"
 webauthn4jCore = "0.25.0.RELEASE"
 webauthn4jServer = "0.25.0.RELEASE"
 
 [libraries]
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposedCore" }
+exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposedCore" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposedCore" }
 hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
 jdbc-driver = { module = "app.cash.sqldelight:jdbc-driver", version.ref = "jdbcDriver" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-ktor = { module = "io.insert-koin:koin-ktor" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j" }
+koin-test = { module = "io.insert-koin:koin-test" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -53,22 +61,22 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinxIoCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-ktor-ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktorServerCore" }
-ktor-moshi = { module = "com.ryanharter.ktor:ktor-moshi", version.ref = "ktorMoshi" }
+ktor-bom = { module = "io.ktor:ktor-bom", version.ref = "ktorBom" }
+ktor-ktor-server-core = { module = "io.ktor:ktor-server-core" }
 ktor-serialization-kotlinx-json-jvm = { module = "io.ktor:ktor-serialization-kotlinx-json-jvm" }
-ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktorServerCore" }
-ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktorServerStatusPages" }
-ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktorServerStatusPages" }
-ktor-server-freemarker = { module = "io.ktor:ktor-server-freemarker", version.ref = "ktorServerStatusPages" }
-ktor-server-sessions = { module = "io.ktor:ktor-server-sessions", version.ref = "ktorServerSessions" }
-ktor-server-status-pages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktorServerStatusPages" }
-ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktorServerCore" }
+ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging" }
+ktor-server-cio = { module = "io.ktor:ktor-server-cio" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation" }
+ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers" }
+ktor-server-sessions = { module = "io.ktor:ktor-server-sessions" }
+ktor-server-status-pages = { module = "io.ktor:ktor-server-status-pages" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host" }
 log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4jCore" }
 log4j-slf4j-impl = { module = "org.apache.logging.log4j:log4j-slf4j-impl", version.ref = "log4jSlf4jImpl" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
-ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
-ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
-ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
+ktor-server-core = { module = "io.ktor:ktor-server-core-jvm" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm" }
+ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 androidx-core-i18n = { group = "androidx.core", name = "core-i18n", version.ref = "coreI18n" }
@@ -81,7 +89,7 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktorBom" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
