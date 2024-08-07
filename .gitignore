@@ -1,16 +1,103 @@
+#General
+.idea
+.vscode
+.DS_Store
+*.iml
+*.ipr
+*.iws
+*.log
+.directory
 build
 captures
-.gradle
-.idea
 bin
 gen
 out
-*.iml
-.directory
 node_modules
 local.properties
 android/mobile/release/*
 ios.xcworkspace/
-
-.DS_Store
+.kotlin/
 .externalNativeBuild
+
+# Gradle files
+gradle-app.setting
+gradlew
+gradlew.bat
+
+# Build output
+/build
+*/build
+**/build/
+
+# Caches
+caches/
+**/.gradle/
+**/caches/
+**/jdks/
+
+# Android specific
+android/.idea/
+android/.gradle/
+android/local.properties
+android/.cxx/
+android/cxx/
+android/app/build/
+android/build/
+android/.externalNativeBuild/
+android/app/.externalNativeBuild/
+android/.idea/libraries/
+android/.idea/modules.xml
+android/.idea/workspace.xml
+
+# iOS specific
+iosApp/.gradle/
+iosApp/.idea/
+iosApp/.cxx/
+iosApp/.externalNativeBuild/
+iosApp/.idea/modules.xml
+iosApp/.idea/workspace.xml
+iosApp/Pods/
+iosApp/Podfile.lock
+iosApp/.cocoapods/
+iosApp/xcuserdata/
+iosApp/DerivedData/
+iosApp/build/
+
+# Native specific
+native/.gradle/
+native/.idea/
+native/.cxx/
+native/.externalNativeBuild/
+native/.idea/modules.xml
+native/.idea/workspace.xml
+native/build/
+
+# Server specific
+server/.gradle/
+server/.idea/
+server/.cxx/
+server/.externalNativeBuild/
+server/.idea/modules.xml
+server/.idea/workspace.xml
+server/build/
+
+# Compose specific
+composeApp/.gradle/
+composeApp/.idea/
+composeApp/.cxx/
+composeApp/.externalNativeBuild/
+composeApp/.idea/modules.xml
+composeApp/.idea/workspace.xml
+composeApp/build/
+
+# Shared specific
+shared/.gradle/
+shared/.idea/
+shared/.cxx/
+shared/.externalNativeBuild/
+shared/.idea/modules.xml
+shared/.idea/workspace.xml
+shared/build/
+
+# Others
+wrapper/
