@@ -20,8 +20,8 @@ class UsersRepository {
 
     private val client = HttpClient(CIO) {
         defaultRequest {
-            host = "10.2.20.113"
-            port = 11111
+            host = "10.2.20.117"
+            port = 1234
         }
         install(ContentNegotiation) {
             json(
