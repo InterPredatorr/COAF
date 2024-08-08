@@ -11,7 +11,9 @@ import org.jetbrains.exposed.sql.transactions.transaction
 fun Application.configureDatabases() {
     val driverClass = environment.config.property("storage.driverClassName").getString()
     val jdbcUrl = environment.config.property("storage.jdbcURL").getString()
-    val db = Database.connect(provideDataSource(jdbcUrl,driverClass, "coaf", "coaf"))
+    val username = environment.config.property("storage.user").getString()
+    val password = environment.config.property("storage.password").getString()
+    val db = Database.connect(provideDataSource(jdbcUrl,driverClass, username, password))
     transaction(db) {
         SchemaUtils.create(UsersTable)
     }

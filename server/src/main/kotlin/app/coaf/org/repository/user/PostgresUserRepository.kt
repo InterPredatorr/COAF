@@ -1,11 +1,12 @@
-package app.coaf.org.repository.user
+package app.coaf.org.repository
 
 import app.coaf.org.db.UsersTable
 import app.coaf.org.db.suspendTransaction
-import domain.entity.Gender
-import domain.entity.User
-import domain.entity.parseAddress
-import domain.entity.parseItem
+import entity.Education
+import entity.Gender
+import entity.User
+import entity.parseAddress
+import entity.parseItem
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.sql.ResultRow
@@ -20,20 +21,20 @@ class PostgresUserRepository: UserRepository {
 
     private fun resultRowToUser(row: ResultRow): User {
         return User(
-            id = row[UsersTable.id].value,
+            id = row[UsersTable.id].toString(),
             imageUrl = row[UsersTable.imageUrl],
             name = row[UsersTable.name],
             surname = row[UsersTable.surname],
             fatherName = row[UsersTable.fatherName],
             birthday = row[UsersTable.birthday],
-            gender = Gender.valueOf(row[UsersTable.gender]),
+            gender = row[UsersTable.gender].let { Gender.valueOf(it) },
             email = row[UsersTable.email],
             mobilePhone = row[UsersTable.mobilePhone],
             placeOfBirth = parseAddress(row[UsersTable.placeOfBirth]),
             currentResidence = parseAddress(row[UsersTable.currentResidence]),
             about = row[UsersTable.about],
             isSmartCitizen = row[UsersTable.isSmartCitizen],
-            educations = parseItem(row[UsersTable.educations]),
+            educations = parseItem<Education>(row[UsersTable.educations]),
             workExperiences = parseItem(row[UsersTable.workExperiences]),
             activities = parseItem(row[UsersTable.activities]),
             certificates = parseItem(row[UsersTable.certificates]),
@@ -68,7 +69,7 @@ class PostgresUserRepository: UserRepository {
         insertStmt.resultedValues?.singleOrNull()?.let { resultRowToUser(it) }
     }
 
-    override suspend fun updateUser(user: User): User = suspendTransaction {
+    override suspend fun updateUser(user: User): Boolean = suspendTransaction {
         UsersTable.update( { UsersTable.email eq user.email } ) { userTable ->
             userTable[imageUrl] = user.imageUrl
             userTable[name] = user.name
@@ -89,11 +90,11 @@ class PostgresUserRepository: UserRepository {
             userTable[skills] = user.skills.joinToString(",")
             userTable[programs] = user.programs.let { Json.encodeToString(it) }
             userTable[clubs] = user.clubs.let { Json.encodeToString(it) }
-        }
-        UsersTable.selectAll().where { UsersTable.id eq user.id }.map { resultRowToUser(it) }.single()
+        } > 0
     }
-    override suspend fun deleteUser(id: Int): Boolean = suspendTransaction {
-        UsersTable.deleteWhere { UsersTable.id eq id } > 0
+
+    override suspend fun deleteUser(email: String): Boolean = suspendTransaction {
+        UsersTable.deleteWhere { UsersTable.email eq email } > 0
     }
 
     override suspend fun getUsers(): List<User> = suspendTransaction {
@@ -105,7 +106,7 @@ class PostgresUserRepository: UserRepository {
             .map { resultRowToUser(it) }
     }
 
-    override suspend fun getUser(id: Int): User? = suspendTransaction {
-        UsersTable.selectAll().where { (UsersTable.id eq id) }.map { resultRowToUser(it) }.singleOrNull()
+    override suspend fun getUser(email: String): User? = suspendTransaction {
+        UsersTable.selectAll().where { (UsersTable.email eq email) }.map { resultRowToUser(it) }.singleOrNull()
     }
 }
