@@ -101,3 +101,7 @@ shared/build/
 
 # Others
 wrapper/
+.gradle
+/local.properties
+/captures
+.cxx
