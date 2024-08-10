@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.kotlinJvm)
-    alias(libs.plugins.ktor)
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
+    id("io.ktor.plugin") version "2.3.12"
     kotlin("plugin.serialization") version "1.9.10"
     id("app.cash.sqldelight") version "2.0.2"
     application
