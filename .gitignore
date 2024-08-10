@@ -6,6 +6,7 @@
 *.ipr
 *.iws
 *.log
+*.tmp
 .directory
 build
 captures
@@ -26,6 +27,9 @@ gradlew.bat
 
 # Build output
 /build
+/caches
+/jdks
+/kotlin-profile
 */build
 **/build/
 
