@@ -3,13 +3,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroup("androidx")
-                includeGroup("com.android")
-                includeGroup("com.google")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -17,13 +11,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        google {
-            content {
-                includeGroup("androidx")
-                includeGroup("com.android")
-                includeGroup("com.google")
-            }
-        }
+        google()
         mavenCentral()
     }
 }
