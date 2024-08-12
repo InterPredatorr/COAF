@@ -2,7 +2,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("io.ktor.plugin") version "2.3.12"
     kotlin("plugin.serialization") version "1.9.10"
-    id("app.cash.sqldelight") version "2.0.2"
+//    id("app.cash.sqldelight") version "2.0.2"
     application
 }
 
@@ -19,23 +19,12 @@ tasks {
 
 
 
-ktor {
-    fatJar {
-        archiveFileName.set("coaf.jar")
-    }
-    docker {
-        jreVersion.set(JavaVersion.VERSION_17)
-        localImageName.set("coaf-docker-image")
-        imageTag.set("0.0.1-preview")
-        externalRegistry.set(
-            io.ktor.plugin.features.DockerImageRegistry.dockerHub(
-                appName = provider { "coaf" },
-                username = providers.environmentVariable("sevaktadevosyan"),
-                password = providers.environmentVariable("TechIT.01")
-            )
-        )
-    }
-}
+
+//ktor {
+//    fatJar {
+//        archiveFileName.set("coaf.jar")
+//    }
+//}
 
 dependencies {
     implementation(projects.shared)
@@ -64,11 +53,11 @@ dependencies {
     implementation(libs.exposed.dao)
 }
 
-sqldelight {
-    databases {
-        create("ServerDatabase") {
-            packageName = "app.coaf.server"
-            dialect("app.cash.sqldelight:postgresql-dialect:2.0.2")
-        }
-    }
-}
+//sqldelight {
+//    databases {
+//        create("ServerDatabase") {
+//            packageName = "app.coaf.server"
+//            dialect("app.cash.sqldelight:postgresql-dialect:2.0.2")
+//        }
+//    }
+//}
