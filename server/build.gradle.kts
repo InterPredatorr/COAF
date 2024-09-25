@@ -2,7 +2,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("io.ktor.plugin") version "2.3.12"
     kotlin("plugin.serialization") version "1.9.10"
-//    id("app.cash.sqldelight") version "2.0.2"
+    id("app.cash.sqldelight") version "2.0.2"
     application
 }
 
@@ -13,18 +13,11 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
 }
 
-tasks {
-    create("stage").dependsOn("installDist")
+ktor {
+    fatJar {
+        archiveFileName.set("COAF.jar")
+    }
 }
-
-
-
-
-//ktor {
-//    fatJar {
-//        archiveFileName.set("coaf.jar")
-//    }
-//}
 
 dependencies {
     implementation(projects.shared)
@@ -53,11 +46,11 @@ dependencies {
     implementation(libs.exposed.dao)
 }
 
-//sqldelight {
-//    databases {
-//        create("ServerDatabase") {
-//            packageName = "app.coaf.server"
-//            dialect("app.cash.sqldelight:postgresql-dialect:2.0.2")
-//        }
-//    }
-//}
+sqldelight {
+    databases {
+        create("ServerDatabase") {
+            packageName = "app.coaf.server"
+            dialect("app.cash.sqldelight:postgresql-dialect:2.0.2")
+        }
+    }
+}
