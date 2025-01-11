@@ -27,6 +27,7 @@ struct TextChangeView: View {
             }
         }
         .padding()
+        .background(Color)
     }
 }
 

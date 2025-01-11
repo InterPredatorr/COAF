@@ -28,7 +28,7 @@ struct ButtonView: View {
                 onClick()
             } label: {
                 Text(title)
-                    .foregroundStyle(.mainPrimary)
+                    .foregroundStyle(.white)
                     .font(.system(size: 20, weight: .black))
             }
             .frame(maxWidth: .infinity)

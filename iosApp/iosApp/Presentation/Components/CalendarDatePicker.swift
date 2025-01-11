@@ -11,13 +11,13 @@ import Shared
 
 struct DayMonthYearDatePicker: View {
     
-    @State private var selectedDate: Date
+    @State private var selectedDate: Date = .now
     @Binding var date: String
-    var alignment: Alignment
+    var alignment: Alignment = .center
     
     init(date: Binding<String>, alignment: Alignment = .center) {
-        self.selectedDate = date.wrappedValue.toDayMonthYearDate
         self._date = date
+        self.selectedDate = date.wrappedValue.toDayMonthYearDate
         self.alignment = alignment
     }
     
